@@ -3,6 +3,8 @@ import uuid
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
+from . import fields
+
 
 class Metric(models.Model):
     """
@@ -26,3 +28,32 @@ class Metric(models.Model):
         if not self.uuid:
             self.uuid = uuid.uuid4()
         super(Metric, self).save()
+
+
+class Question(models.Model):
+    """
+    Details to be used  when displaying a question as a form field.
+    """
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    title = models.CharField(_("Title"), max_length=500)
+    field_type = models.IntegerField(_("Form field type"), choices=fields.NAMES)
+    choices = models.TextField(_("Choices"), max_length=1000, blank=True,
+                               help_text="choices are delimited by a comma")
+    placeholder = models.CharField(_("Placeholder"), max_length=100,
+                                   blank=True)
+    required = models.BooleanField(_("Required"), default=True)
+    metric = models.ForeignKey("Metric", null=True, blank=True,
+                               related_name="questions",
+                               on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.title
+
+    def get_choices(self):
+        """
+        Parse a comma delimited choices string into a list of tupled choices.
+        """
+        choices = [(word.strip(), word.strip().capitalize())
+                   for word in self.choices.split(",")]
+        return choices
