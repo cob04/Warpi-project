@@ -26,3 +26,9 @@ if settings.DEBUG:
     urlpatterns = [
         url(r"^__debug__/", include(debug_toolbar.urls)),
     ] + urlpatterns
+
+
+# Admin Tweaks
+admin.site.site_header = "Warpi Admin Portal"
+admin.site.site_title = "Warpi Admin"
+admin.site.index_title = "Welcome to warpi's admin Portal"
