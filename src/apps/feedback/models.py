@@ -57,3 +57,32 @@ class Question(models.Model):
         choices = [(word.strip(), word.strip().capitalize())
                    for word in self.choices.split(",")]
         return choices
+
+
+class Response(models.Model):
+    """
+    A response to the metric questions, this is then linked to
+    the entries for each question.
+    """
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+    metric = models.ForeignKey("Metric", null=True, blank=True,
+                               related_name="responses",
+                               on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = _("Response")
+        verbose_name_plural = _("Responses")
+
+
+class Entry(models.Model):
+    response = models.ForeignKey("Response", null=True, blank=True,
+                                 related_name="entries",
+                                 on_delete=models.CASCADE)
+    question_id = models.IntegerField()
+    key = models.CharField(max_length=500, null=True)
+    value = models.CharField(max_length=1000, null=True)
+
+    class Meta:
+        verbose_name = _("Entry")
+        verbose_name_plural = _("Entries")
