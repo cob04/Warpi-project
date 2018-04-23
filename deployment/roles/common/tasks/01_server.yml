@@ -1,0 +1,16 @@
+##
+# Update the apt package cache adn install packages as a root user
+##
+- name: Install required packages
+  apt: pkg={{item}} update_cache=yes cache_valid_time=3600
+  sudo: True
+  with_items:
+    - vim
+    - fail2ban
+    - python3-devel
+    - python-virtualenv
+    - python3-virtualenv
+    - python-devel
+    - gcc
+    - libselinux-python
+    - libtifd
