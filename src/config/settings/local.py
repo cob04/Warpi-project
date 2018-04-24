@@ -1,16 +1,26 @@
+##################
+# LOCAL SETTINGS #
+##################
+
 from .base import *
 
 
-########################
-# DEVELOPMENT SETTINGS #
-########################
+# Domains
+# -------
+ALLOWED_HOSTS = ["localhost"]
 
-DEBUG = True
+# DEBUG
+# -----
+DEBUG = env.bool('DJANGO_DEBUG', default=True)
+TEMPLATES[0]['OPTIONS']['debug'] = DEBUG
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "@hxz_3)5(j)l@+kf^ub$p45zbpl4-e@izqs5_44*sts0(09^fx"
+# SECRET CONFIGURATION
+# --------------------
+SECRET_KEY = env('DJANGO_SECRET_KEY', default="@hxz_3)5(j)l@+kf^ub$p45zbpl4-e@izqs5_44*sts0(09^fx")
 
-
+# Mail settings
+# -------------
+EMAIL_BACKEND="django.core.mail.backends.console.EmailBackend"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
@@ -20,21 +30,14 @@ DATABASES = {
 }
 
 
-INSTALLED_APPS += [
-    'debug_toolbar',
-    'django_extensions',
-]
+# django-debug-toolbar
+# --------------------
+MIDDLEWARE += ['debug_toolbar.middleware.DebugToolbarMiddleware',]
 
-# Debug toolbar  middleware
-MIDDLEWARE += [
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
-]
+INSTALLED_APPS += ['debug_toolbar',]
 
 INTERNAL_IPS = ['127.0.0.1']
 
-# Domains for public site
-ALLOWED_HOSTS = ["localhost"]
-
-EMAIL_BACKEND="django.core.mail.backends.console.EmailBackend"
-
-
+# django-extensions
+# -----------------
+INSTALLED_APPS += ['django_extensions',]
