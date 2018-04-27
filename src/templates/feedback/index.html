@@ -1,9 +1,12 @@
-{% extends "base.html" %}
+{% extends "layout.html" %}
 
 {% block content %}
 
 {% for metric in metric_list %}
-	<h2><a href="{{ metric.get_absolute_url }}">{{ metric.title }}</a></h2>
+	<a class="btn btn-purple btn-lg" href="{{ metric.get_absolute_url }}">
+	<i class="fa fa-user"></i>
+	{{ metric.title }}
+	</a>
 {% endfor %}
 
 {% endblock %}

@@ -1,11 +1,22 @@
-{% extends "base.html" %}
+{% extends "layout.html" %}
 
+{% load bootstrap3 %}
+{% load static %}
 
+{% block extra_css %}
+<link href="{% static "vendor/star-rating-svg/star-rating-svg.css" %}" rel="stylesheet">
+{% endblock %}
+
+{% block extra_js %}
+{{ block.super }}
+<script src="{% static "vendor/star-rating-svg/jquery.star-rating-svg.min.js" %}"></script>
+{% endblock %}
 
 {% block content %}
+<hr style="border: 4px solid #66cc99;"/>
 <form method="POST" action=".">
-		{% csrf_token %}
-		{{ form }}
-		<input type="submit" value="submit">
-	</form>
+	{% csrf_token %}
+	{% bootstrap_form form %}
+	<input class="btn btn-lg btn-green" type="submit" value="submit">
+</form>
 {% endblock %}
