@@ -4,14 +4,15 @@ from django.db import models
 from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 
+from apps.core.abstract_models import Slugged, TimeStamped
+
 from . import fields
 
 
-class Metric(models.Model):
+class Metric(TimeStamped, Slugged):
     """
     A model for details of a metric or category of feedback questions.
     """
-    title = models.CharField(_("Title"), max_length=255)
     uuid = models.CharField(_("UUID"), max_length=100, unique=True,
                             null=True, blank=True)
 
@@ -34,13 +35,10 @@ class Metric(models.Model):
         return reverse("feedback:metric-form", args=[self.uuid])
 
 
-class Question(models.Model):
+class Question(TimeStamped, Slugged):
     """
     Details to be used  when displaying a question as a form field.
     """
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
-    title = models.CharField(_("Title"), max_length=500)
     field_type = models.IntegerField(_("Form field type"), choices=fields.NAMES)
     choices = models.TextField(_("Choices"), max_length=1000, blank=True,
                                help_text="choices are delimited by a comma")
@@ -64,13 +62,11 @@ class Question(models.Model):
         return choices
 
 
-class Response(models.Model):
+class Response(TimeStamped):
     """
     A response to the metric questions, this is then linked to
     the entries for each question.
     """
-    created = models.DateTimeField(auto_now_add=True)
-    updated = models.DateTimeField(auto_now=True)
     metric = models.ForeignKey("Metric", null=True, blank=True,
                                related_name="responses",
                                on_delete=models.CASCADE)
