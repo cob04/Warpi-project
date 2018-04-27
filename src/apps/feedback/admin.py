@@ -5,7 +5,7 @@ from .models import Entry, Metric, Question, Response
 
 class QuestionInline(admin.StackedInline):
     model =  Question
-
+    readonly_fields = ('order',)
 
 @admin.register(Metric)
 class MetricAdmin(admin.ModelAdmin):

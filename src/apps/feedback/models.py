@@ -5,6 +5,7 @@ from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 
 from apps.core.abstract_models import Slugged, TimeStamped
+from apps.core.fields import OrderField
 
 from . import fields
 
@@ -49,9 +50,10 @@ class Question(TimeStamped, Slugged):
     metric = models.ForeignKey("Metric", null=True, blank=True,
                                related_name="questions",
                                on_delete=models.CASCADE)
+    order = OrderField(blank=True, for_fields=['metric'])
 
     def __str__(self):
-        return self.title
+        return "{}. {}".format(self.order + 1, self.title)
 
     def get_choices(self):
         """
