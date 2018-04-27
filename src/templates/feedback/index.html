@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% for metric in metric_list %}
+	<h2><a href="{{ metric.get_absolute_url }}">{{ metric.title }}</a></h2>
+{% endfor %}
+
+{% endblock %}

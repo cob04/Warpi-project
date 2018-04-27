@@ -25,7 +25,7 @@ class ResponseModelForm(forms.ModelForm):
         for question in self.questions:
             field_key = "question_%d" % question.id
             field_class = fields.CLASSES[question.field_type]
-            firld_widget = fields.WIGETS.get(question.field_type)
+            field_widget = fields.WIDGETS.get(question.field_type)
 
             field_args = {
                 "label": str(question),

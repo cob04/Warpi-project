@@ -15,6 +15,10 @@ class MetricMethodTests(TestCase):
         metric.save()
         self.assertEqual(uuid, metric.uuid)
 
+    def test_fetching_absolute_url(self):
+        metric = MetricFactory.create()
+        self.assertEqual(metric.get_absolute_url(), "/feedback/%s/" % metric.uuid)
+
 
 class QuestionMethodTests(TestCase):
 

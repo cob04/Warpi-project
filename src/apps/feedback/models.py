@@ -1,6 +1,7 @@
 import uuid
 
 from django.db import models
+from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 
 from . import fields
@@ -29,6 +30,9 @@ class Metric(models.Model):
             self.uuid = uuid.uuid4()
         super(Metric, self).save()
 
+    def get_absolute_url(self):
+        return reverse("feedback:metric-form", args=[self.uuid])
+
 
 class Question(models.Model):
     """
@@ -40,6 +44,7 @@ class Question(models.Model):
     field_type = models.IntegerField(_("Form field type"), choices=fields.NAMES)
     choices = models.TextField(_("Choices"), max_length=1000, blank=True,
                                help_text="choices are delimited by a comma")
+    help_text = models.CharField(_("Help text"), max_length=100, blank=True)
     placeholder = models.CharField(_("Placeholder"), max_length=100,
                                    blank=True)
     required = models.BooleanField(_("Required"), default=True)
