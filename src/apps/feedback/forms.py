@@ -6,21 +6,26 @@ from .models import Response, Entry
 from .widgets import StarRatingWidget
 
 
-class QuestionForm(forms.Form):
+class ResponseModelForm(forms.ModelForm):
     """
-    Dynamically render a form from a metric question instance.
+    Dynamically add fields from the passed in question instances(plural).
     """
-    def __init__(self, question, *args, **kwargs):
-        """
-        Dynamically add a form field from the passed in question
-        instance
-        """
-        super(QuestionForm, self).__init__(*args, **kwargs)
+    class Meta:
+        model = Response
+        exclude = ("metric",)
 
-        if question:
-            field_key = "question_%s" % question.id
+    def __init__(self, metric, *args, **kwargs):
+        """
+        Dynamically add each of the form fields to the given questions.
+        """
+        self.metric = metric
+        self.questions = metric.questions.all()
+        super(ResponseModelForm, self).__init__(*args, **kwargs)
+
+        for question in self.questions:
+            field_key = "question_%d" % question.id
             field_class = fields.CLASSES[question.field_type]
-            field_widget = fields.WIDGETS.get(question.field_type)
+            firld_widget = fields.WIGETS.get(question.field_type)
 
             field_args = {
                 "label": str(question),
@@ -35,36 +40,6 @@ class QuestionForm(forms.Form):
 
             if field_widget is not None:
                 field_args["widget"] = field_widget
-
-            self.fields[field_key] = field_class(**field_args)
-
-
-class ResponseModelForm(forms.ModelForm):
-    """
-    Dynamically add fields from the passed in question instances(plural).
-    """
-    class Meta:
-        model = Response
-        exclude = ("metric",)
-
-    def __init__(self, metric, questions, *args, **kwargs):
-        """
-        Dynamically add each of the form fields to the given questions.
-        """
-        self.metric = metric
-        self.questions = questions
-        super(ResponseModelForm, self).__init__(*args, **kwargs)
-
-        for question in self.questions:
-            field_key = "question_%d" % question.id
-            field_class = fields.CLASSES[question.field_type]
-            field_args = {
-                "required": question.required,
-            }
-            arg_names = field_class.__init__.__code__.co_varnames
-
-            if "choices" in arg_names:
-                field_args["choices"] = question.get_choices()
 
             self.fields[field_key] = field_class(**field_args)
 
