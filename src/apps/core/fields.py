@@ -22,7 +22,7 @@ class OrderField(models.PositiveIntegerField):
                 # Get the order of the last item
                 last_item = qs.latest(self.attname)
                 value = last_item.order + 1
-            except ObjectDoesnNotExist:
+            except ObjectDoesNotExist:
                 value = 0
             setattr(model_instance, self.attname, value)
             return value

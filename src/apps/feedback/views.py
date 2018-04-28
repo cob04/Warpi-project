@@ -1,7 +1,9 @@
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render
 from django.shortcuts import redirect
-from django.views.generic import ListView, View
+from django.views.generic import FormView
+from django.views.generic import ListView
+from django.views.generic import View
 
 
 from .forms import ResponseModelForm
@@ -29,8 +31,10 @@ class FeedbackMetricView(MetricMixin, View):
         context = {}
         metric = self.get_metric_by_uuid()
         metric_form = ResponseModelForm(metric)
+        metric_list = Metric.objects.all()
         context['form'] = metric_form
         context['metric'] = metric
+        context['metric_list'] = metric_list
         return render(request, self.template_name, context)
 
     def post(self, request, *args, **kwargs):

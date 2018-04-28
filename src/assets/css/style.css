@@ -29,6 +29,10 @@ h6 {
     font-weight: 300;
 }
 
+ul {
+  list-style-type: none;
+} 
+
 /** NAVBAR
 ================================================== **/
 .navbar-default {
@@ -398,38 +402,27 @@ p.copyright {
   background-color: #FF530A;
   border-color: #FF530A;
 }
-/***
-Survey form page...
+/** Metric form page...
 ==============================
 ***/
 @media(max-width: 767px){
-  .survey > h2 {
+  .metric > h2 {
       font-size: 1.5em;
   }
 }
 
-#survey-form {
-  font-size: 1.2em;
-}
-
-#survey-form .form-group > label:first-child {
+#metric-form .form-group > label:first-child {
   color: #037b3f;
 }
 
-#survey-form .form-group {
+#metric-form .form-group {
   padding-bottom: 20px;
 }
 
-.jumbotron {
-  background-color: #66CC99;
-}
-.jumbotron h2 {
-   color: #FFF;
-   text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
+#metric-list li {
+  padding: 5px;
 }
 
-@media(max-width:767px) {
-    .jumbotron > h1 {
-        font-size: 3em;
-    }
-};
+#metric-list {
+  border-left: 1px solid #efefef;
+}
