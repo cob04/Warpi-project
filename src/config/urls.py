@@ -21,6 +21,7 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^feedback/', include('apps.feedback.urls', namespace="feedback")),
 ]
 
 if settings.DEBUG:
