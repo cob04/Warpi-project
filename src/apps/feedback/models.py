@@ -78,6 +78,9 @@ class Response(TimeStamped):
         verbose_name = _("Response")
         verbose_name_plural = _("Responses")
 
+    def __str__(self):
+        return "{}".format(str(self.created))
+
 
 class Entry(models.Model):
     response = models.ForeignKey("Response", null=True, blank=True,

@@ -42,3 +42,4 @@ class EntryInline(admin.TabularInline):
 class ResponseAdmin(admin.ModelAdmin):
     list_display = ('created',)
     inlines = [EntryInline]
+    readonly_fields = ('metric',)
