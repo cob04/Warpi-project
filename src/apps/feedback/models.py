@@ -1,5 +1,6 @@
 import uuid
 
+from django.contrib.postgres.fields import JSONField
 from django.db import models
 from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
@@ -85,6 +86,7 @@ class Entry(models.Model):
     question_id = models.IntegerField()
     key = models.CharField(max_length=500, null=True)
     value = models.CharField(max_length=1000, null=True)
+    data = JSONField()
 
     class Meta:
         verbose_name = _("Entry")

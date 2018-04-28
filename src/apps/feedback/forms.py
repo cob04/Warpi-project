@@ -57,13 +57,16 @@ class ResponseModelForm(forms.ModelForm):
             value = self.cleaned_data[field_key]
 
             if isinstance(value, list):
-                value = ", ".join([v.strip() for v in value])
+                value_cat = ", ".join([v.strip() for v in value])
 
             new = {
                 "response": response,
                 "question_id": question.id,
                 "key": str(question),
-                "value": value
+                "value": value,
+                "data": {
+                    question.title: self.cleaned_data[field_key]
+                }
             }
             new_response_entries.append(Entry(**new))
 
