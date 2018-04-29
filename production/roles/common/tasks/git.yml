@@ -1,0 +1,11 @@
+##
+# Clone and pull the repo
+##
+
+- name: Set up git configuration
+  apt: name=git-core state=present update_cache=yes
+  sudo: yes
+
+# TODO: update this for bitbucket.
+- name: Clone or pull the latest code
+  git: repo={{ code_repository }} dest={{ app_dir }}

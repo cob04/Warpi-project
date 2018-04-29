@@ -1,0 +1,12 @@
+###
+# Configure the server for a Django app.
+###
+
+- include: server.yml
+- include: git.yml
+- include: postgres.yml
+- include: dependecies.yml
+- include: migrations.yml
+- include: nginx.yml
+- include: gunicorn.yml
+- include: supervisor.yml

@@ -1,0 +1,12 @@
+##
+# Sets up and configures Supervisor which runs Green Unicorn
+##
+
+- name: Setup Supervisor via the apt
+  apt: name=supervisor state=present update_cache=yes
+  sudo: yes
+
+- name: set Supervisor config file
+  template: src=supervisor.conf.j2 dest=/etc/supervisor/conf.d/{{ app_name }}.conf.py
+  sudo: yes
+  notify: restart supervisor

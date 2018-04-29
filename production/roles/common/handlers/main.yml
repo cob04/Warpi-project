@@ -1,0 +1,11 @@
+- name: restart postgres
+  service: name=posrgresql state=restarted
+  sudo: yes
+
+- name: restart nginx
+  service: name=nginx state=restarted enabled=yes
+  sudo: yes
+
+- name: restart supervisor
+  supervisorctl: name=gunicorn_{{ app_name }} state=restarted
+  sudo: yes
