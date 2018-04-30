@@ -1,11 +1,13 @@
 ##
 # Set up all the dependencies in a virtualenv required  by the django app
+# also set up environment variables.
 ##
+---
 - name: Create a virtualenv directory
   file: path={{ venv_dir }} state=directory
 
 - name: Install dependencies
-  pip: requirements={{ app_dir }}/requirements/production.txt
+  pip: requirements={{ project_dir }}/requirements/production.txt
        virtualenv={{ venv_dir }}
        virtualenv_python=python3.5
 

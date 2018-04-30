@@ -7,11 +7,14 @@ deployer_user: cobain
 # SSH Keys Directory
 ssh_dir: "/home/.ssh"
 
-# Code repo
+# Code Repo Url
 code_repository_url: https://eric_cobain@bitbucket.org/eric_cobain/warpi-project.git
 
+# Full Project Directory.
+project_dir: "/home/{{ deployer_user }}/{{ app_name }}"
+
 # App Directory
-app_dir: "/home/{{ deployer_user }}/{{ app_name }}"
+app_dir: "/home/{{ deployer_user }}/{{ app_name }}/src"
 
 # DB Configration
 db_url: "postgresql://{{ deployer_user }}:{{ db_password }}@localhost/{{ app_name }}"
