@@ -1,0 +1,14 @@
+##
+# Update the apt package cache adn install packages as a root user
+##
+- name: Install required packages
+  apt: name={{item}} update_cache=yes cache_valid_time=3600
+  become: yes
+  with_items:
+    - vim
+    - python-virtualenv
+    - python-dev
+    - python-setuptools
+    - gcc
+    - python-pip
+    - libjpeg-dev

@@ -1,0 +1,12 @@
+---
+- name: Restart postgres
+  service: name=posrgresql state=restarted
+  become: yes
+
+- name: Restart nginx
+  service: name=nginx state=restarted enabled=yes
+  become: yes
+
+- name: Restart supervisor
+  supervisorctl: name=gunicorn_{{ app_name }} state=restarted
+  become: yes

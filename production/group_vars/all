@@ -1,0 +1,34 @@
+# App Name
+app_name: warpi
+
+# Deployer User
+deployer_user: cobain
+
+# SSH Keys Directory
+ssh_dir: "/home/.ssh"
+
+# Code Repo Url
+code_repository_url: https://eric_cobain@bitbucket.org/eric_cobain/warpi-project.git
+
+# Full Project Directory.
+project_dir: "/home/{{ deployer_user }}/{{ app_name }}"
+
+# App Directory
+app_dir: "/home/{{ deployer_user }}/{{ app_name }}/src"
+
+# DB Configration
+db_url: "postgresql://{{ deployer_user }}:{{ db_password }}@localhost/{{ app_name }}"
+db_password: thisisnotaverysecurepassword
+db_name: "{{ app_name }}"
+db_user: "{{ deployer_user }}"
+
+# Application Dependencies Setup
+venv_dir: "/home/{{ deployer_user }}/envs/{{ app_name }}"
+venv_python: "{{ venv_dir }}/bin/python3.5"
+
+# Remote server details
+server_ip: 45.33.51.166
+wsgi_server_port: 8000
+
+# Gunicorn Configuration
+gunicorn_port: 8000
