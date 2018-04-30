@@ -8,7 +8,6 @@
     - postgresql
     - libpq-dev
     - python-psycopg2
-    - python-psycopg2-binary
 
 - name: Create database
   postgresql_db: name={{ app_name }}

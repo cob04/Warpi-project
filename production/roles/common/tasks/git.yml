@@ -8,4 +8,4 @@
 
 # TODO: update this for bitbucket.
 - name: Clone or pull the latest code
-  git: repo={{ code_repository }} dest={{ app_dir }}
+  git: repo={{ code_repository_url }} dest={{ app_dir }}

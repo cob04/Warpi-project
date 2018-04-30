@@ -8,7 +8,7 @@ deployer_user: cobain
 ssh_dir: "/home/.ssh"
 
 # Code repo
-code_repository_url: https://<url>
+code_repository_url: https://eric_cobain@bitbucket.org/eric_cobain/warpi-project.git
 
 # App Directory
 app_dir: "/home/{{ deployer_user }}/{{ app_name }}"
