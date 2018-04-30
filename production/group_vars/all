@@ -10,6 +10,9 @@ ssh_dir: "/home/.ssh"
 # Code Repo Url
 code_repository_url: https://eric_cobain@bitbucket.org/eric_cobain/warpi-project.git
 
+# Git Branch
+git_branch: master
+
 # Full Project Directory.
 project_dir: "/home/{{ deployer_user }}/{{ app_name }}"
 

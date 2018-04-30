@@ -1,5 +1,6 @@
 ##
 # Set up Gunicorn configuration
 ##
+---
 - name: set the gunicorn config file
   template: src=gunicorn.conf.py.j2 dest={{ app_dir }}/gunicorn.conf.py
