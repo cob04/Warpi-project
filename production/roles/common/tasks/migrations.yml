@@ -3,11 +3,11 @@
 ##
 - name: Make migrations
   shell: ". {{ app_dir }}/.env; {{ venv_python }} {{ app_dir }}/manage.py makemigrations"
-  sudo: yes
+  become: yes
 
 - name: Migrate database
   django_manage: app_path={{ app_dir }} command=migrate virtualenv={{ venv_dir }}
 
 - name: Collect all static files
   django_manage: app_path={{ app_dir }} command=collectstatic virtualenv={{ venv_dir }}
-  sudo: yes
+  become: yes

@@ -5,6 +5,6 @@
 
 - name: apply common configuration to server
   hosts: all
-  user: deployer
+  user: "{{deployer_user}}"
   roles:
-   - commom
+   - common

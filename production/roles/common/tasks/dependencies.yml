@@ -11,4 +11,4 @@
 
 - name: Create the .env file for running ad-hoc python commands in the virtualenv
   template: src=env.j2 dest={{ app_dir }}/.env
-  sudo: yes
+  become: yes

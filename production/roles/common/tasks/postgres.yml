@@ -3,7 +3,7 @@
 ##
 - name: Set up and configure postgres
   apt: name={{ item }}
-  sudo: yes
+  become: yes
   with_items:
     - postgresql
     - libpq-dev
@@ -12,13 +12,13 @@
 
 - name: Create database
   postgresql_db: name={{ app_name }}
-  sudo: yes
-  sudo_user: postgres
+  become: yes
+  become_user: postgres
 
 - name: Configure seperate PostgresSQL user
   postgresql_user: db={{ app_name }} name={{ db_user}} password={{ db_password }}
                    priv=ALl role_attr_flags=NOSUPERUSER
-  sudo: yes
-  sudo_user: postgres
+  become: yes
+  become_user: postgres
   notify:
     - restart postgres

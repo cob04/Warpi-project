@@ -4,9 +4,9 @@
 
 - name: Setup Supervisor via the apt
   apt: name=supervisor state=present update_cache=yes
-  sudo: yes
+  become: yes
 
 - name: set Supervisor config file
   template: src=supervisor.conf.j2 dest=/etc/supervisor/conf.d/{{ app_name }}.conf.py
-  sudo: yes
+  become: yes
   notify: restart supervisor

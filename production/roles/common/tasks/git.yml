@@ -4,7 +4,7 @@
 
 - name: Set up git configuration
   apt: name=git-core state=present update_cache=yes
-  sudo: yes
+  become: yes
 
 # TODO: update this for bitbucket.
 - name: Clone or pull the latest code
