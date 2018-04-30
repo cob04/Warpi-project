@@ -104,7 +104,7 @@ def secure(new_user=env.user_name):
     sed('/etc/ssh/sshd_config', '^#PasswordAuthentication yes',
         'PasswordAuthenticaton no')
     run('mkdir /home/{}/.ssh'.format(env.user_name))
-    run('chown -R {1} /home/{1}/.ssh'.format(env.user_name))
+    run('chown -R {0} /home/{0}/.ssh'.format(env.user_name))
     run("service ssh restart")
     print(green("Security steps completed. Log in to the server as '%s' from "
                 "now on." % new_user, bold=True))

@@ -6,10 +6,8 @@
   become: yes
   with_items:
     - vim
-    - python3-devel
     - python-virtualenv
-    - python3-virtualenv
-    - python-devel
+    - python-dev
     - python-setuptools
     - gcc
     - python-pip
