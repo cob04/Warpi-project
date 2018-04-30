@@ -1,6 +1,7 @@
 ##
 # Configure nginx web server
 ##
+---
 - name: Set up nginx config
   apt: name=nginx state=present update_cache=yes
   become: yes

@@ -1,7 +1,7 @@
 ###
 # Configure the server for a Django app.
 ###
-
+---
 - include: server.yml
 - include: git.yml
 - include: postgres.yml

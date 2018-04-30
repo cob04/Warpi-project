@@ -3,9 +3,17 @@
 ##
 ---
 - name: Set up git configuration
-  apt: name=git-core state=present update_cache=yes
+  apt:  name=git-core state=present update_cache=yes
   become: yes
 
-# TODO: update this for bitbucket.
 - name: Clone or pull the latest code
-  git: repo={{ code_repository_url }} dest={{ project_dir }}
+  git:  repo={{ code_repository_url }}
+        version={{ git_branch }}
+        dest={{ project_dir }}
+        accept_hostkey=yes
+
+- name: Delete all .pyc files
+  command: find . -name '*.pyc' -Delete
+  args:
+    chdir: "{{ project_dir }}"
+  changed_when: False
