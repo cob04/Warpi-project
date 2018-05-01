@@ -13,7 +13,7 @@ code_repository_url: https://eric_cobain@bitbucket.org/eric_cobain/warpi-project
 code_repository: git@bitbucket.org:eric_cobain/warpi-project.git
 
 # Git Branch
-git_branch: master
+git_branch: deployment
 
 # deploy ssh_keys
 local_deploy_key_file: /home/{{ deployer_user }}/.ssh/bitbucket-ssh-key.pub
