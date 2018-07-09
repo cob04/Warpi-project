@@ -1,8 +1,5 @@
-[group: {{ app_name }}]
-programs=gunicorn_{{ app_name }}
-
 [program:gunicorn_{{ app_name }}]
-command={{ venv_dir }}/bin/gunicorn -c gunicorn.conf.py -p gunicorn.pid
+command={{ venv_dir }}/bin/gunicorn  -c gunicorn.conf.py -p gunicorn.pid config.wsgi:application
 directory={{ app_dir }}
 user={{ deployer_user }}
 autostart=true

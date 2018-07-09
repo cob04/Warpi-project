@@ -17,13 +17,6 @@ ROOT_DIR = environ.Path(__file__) - 3
 # Load operating system environment variables
 env = environ.Env()
 
-try:
-    env_file = str(ROOT_DIR.path('.env'))
-    env.read_env(env_file)
-except:
-    pass
-
-
 ###################
 # DJANGO SETTINGS #
 ###################
