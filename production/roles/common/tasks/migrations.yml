@@ -4,16 +4,18 @@
 ---
 
 # - name: Make migrations
-#   shell: ". {{ app_dir }}/.env; {{ venv_python }} {{ app_dir }}/src/manage.py makemigrations"
+#   shell: ". {{ app_dir }}/.env; {{ venv_python }} {{ app_dir }}/src/manage.py migrate"
 #   become: yes
 
 - name: Migrate database
   django_manage:  app_path={{ app_dir }}
                   command=migrate
                   virtualenv={{ venv_dir }}
+  environment: "{{ django_environment }}"
 
 - name: Collect all static files
   django_manage:  app_path={{ app_dir }}
                   command=collectstatic
                   virtualenv={{ venv_dir }}
+  environment: "{{ django_environment }}"
   become: yes

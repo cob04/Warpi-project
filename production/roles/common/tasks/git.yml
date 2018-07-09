@@ -7,13 +7,7 @@
   become: yes
 
 - name: Clone or pull the latest code
-  git:  repo={{ code_repository_url }}
+  git:  repo={{ code_repository }}
         version={{ git_branch }}
         dest={{ project_dir }}
         accept_hostkey=yes
-
-- name: Delete all .pyc files
-  command: find . -name '*.pyc' -Delete
-  args:
-    chdir: "{{ project_dir }}"
-  changed_when: False

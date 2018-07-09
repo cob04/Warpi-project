@@ -3,7 +3,12 @@ from __future__ import unicode_literals
 import multiprocessing
 
 
-bind = "127.0.0.1:{{ app_gunicorn_port }}"
-workers = "multiprocessing.cpu_count() * 2 + 1
+bind = "unix:{{ app_dir }}/gunicorn.sock"
+workers = multiprocessing.cpu_count() * 2 + 1
 loglevel = "error"
 proc_name = "{{ app_name }}"
+raw_env = [
+{% for k, v in django_environment.iteritems() %}
+	"{{ k }}={{ v }}",
+{% endfor %}
+]

@@ -41,7 +41,7 @@ def deploy():
     Configure and deploy to production.
     """
     local( "ansible-playbook ./deploy.yml --private-key=../ssh-keys/45.33.51.166_prod_key\
-          -K -u cobain -i ./hosts -vvv")
+          -K -u cobain -i ./hosts -vvvv")
 
 
 

@@ -1,0 +1,6 @@
+#Django environment variables.
+django_environment:
+  DEBUG: "False"
+  DJANGO_SETTINGS_MODULE: "{{ django_settings_file }}"
+  DJANGO_SECRET_KEY: "{{ django_secret_key }}"
+  DATABASE_URL: "postgresql://{{ deployer_user }}:{{ db_password }}@localhost/{{ app_name }}"
