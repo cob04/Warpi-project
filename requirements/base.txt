@@ -11,4 +11,4 @@ djangorestframework==3.8.2
 django-environ==0.4.4
 django-bootstrap3==9.1.0
 gunicorn==19.8.0
-Pygments==2.2.0
+Pygments==2.7.4
